@@ -231,9 +231,11 @@ body {
 
 .vision_section{
   overflow: hidden;
+  box-sizing: border-box;
 }
 .mission_section{
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .vision_img img {
