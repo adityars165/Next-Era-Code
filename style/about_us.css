@@ -229,6 +229,13 @@ body {
   text-align: justify;
 }
 
+.vision_section{
+  overflow: hidden;
+}
+.mission_section{
+  overflow: hidden;
+}
+
 .vision_img img {
   border-radius: 10px;
   overflow: hidden;
