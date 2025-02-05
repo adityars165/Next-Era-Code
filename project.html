@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next Era Code - Portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="./image/N-logo.jpg"
+      rel="icon"
+      style="height: 16px; width: 16px"
+    />
+    <style>
+      /* Navbar and General Styles */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .title-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Full-width */
+        height: 60vh; /* Upper block height */
+      }
+
+      .title-container {
+        text-align: center;
+        background:  #fff; /* Semi-transparent background */
+        padding: 2rem;
+        border-radius: 0.5rem;
+        color: #fff;
+        max-width: 100%;
+        
+      }
+
+      .title-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color:#ddd
+      }
+
+      .subtitle-text {
+        font-size: 1.2rem;
+        color: #ddd;
+      }
+
+
+      
+         
+
+
+      /* Fade-in and slide-up animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        /* padding-top: ; */
+      }
+
+      .navbar-custom {
+        border-bottom: 3px solid #007bff;
+      }
+      .client {
+        margin-bottom: 50px;
+        text-align: center;
+        margin-top: 35px;
+      }
+
+      /* Filter Section Styles */
+      .filter-section {
+        padding: 1.5rem 0;
+        background-color: #f8f9fa;
+      }
+
+      .filter-dropdown {
+        margin: 0 0.5rem;
+        min-width: 150px;
+      }
+
+      .dropdown-menu {
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-item:hover {
+        background-color: #f8f9fa;
+      }
+
+      /* Project Section Styles */
+      .tagline-section {
+        padding: 3rem 0;
+        background-color: white;
+        text-align: center;
+      }
+
+      .project-card {
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .project-section {
+        padding: 4rem 0;
+        background-color: #fafbfc;
+      }
+
+      .active-filter {
+        background-color: #007bff;
+        color: white !important;
+      }
+      /* Hover effect for project cards */
+      .project-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-item:hover {
+        transform: translateY(-10px); /* Lifts the card slightly */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Adds a shadow */
+      }
+
+      .project-item .project-card img {
+        transition: transform 0.3s ease;
+      }
+
+      .project-item:hover .project-card img {
+        transform: scale(1.05); /* Zooms in the image slightly */
+      }
+
+      .project-item .card-body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .project-item:hover .card-body {
+        background-color: #f8f9fa; /* Light background change */
+        color: #343a40; /* Darker text for contrast */
+      }
+
+      /* Logo Slider Styles */
+      .logos {
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: #fafbfc;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        margin: 0;
+      }
+
+      .logos::before,
+      .logos::after {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        height: 200px;
+        content: "";
+        z-index: 2;
+      }
+
+      .logos::before {
+        left: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+      }
+
+      .logos::after {
+        right: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+      }
+
+      .logos-slide {
+        display: inline-block;
+        animation: 35s slide infinite linear;
+      }
+
+      .logos-slide img {
+        height: 50px;
+        margin: 0 30px;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+
+      /* Footer Styles */
+      .btn:hover {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .follow-us a {
+        text-decoration: none;
+      }
+
+      footer {
+        border-top: 2px #ccc solid;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .filter-dropdown {
+          margin: 0.5rem 0;
+        }
+
+        .project-card:hover {
+          transform: translateY(-5px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">
+          <img
+            src="./image/N-logo.jpg"
+            alt="Logo"
+            style="height: 25px; width: 25px"
+          />
+          Next Era Code
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./service.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./project.html">Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./faq.html">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid"
+      style="
+        background-image: url(https://bairesdev.mo.cloudinary.net/blog/2023/08/Innovation-in-Software.jpg?tx=w_1920,q_auto);
+      "
+    >
+      <section class="title-section">
+        <div class="title-container-fluid">
+          <h1 class="title-text">Welcome to Our Projects</h1>
+          <p class="subtitle-text">
+            Discover innovative solutions across various industries
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-3">
+            <div class="dropdown filter-dropdown">
+              <button
+                class="btn btn-light dropdown-toggle w-100"
+                type="button"
+                id="industryDropdown"
+                data-bs-toggle="dropdown"
+              >
+                Industry
+              </button>
+              <ul class="dropdown-menu w-100">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="medical"
+                    data-type="industry"
+                    >Medical</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="finance"
+                    data-type="industry"
+                    >Finance</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="media"
+                    data-type="industry"
+                    >Media</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="sports"
+                    data-type="industry"
+                    >Sports</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="dropdown filter-dropdown">
+              <button
+                class="btn btn-light dropdown-toggle w-100"
+                type="button"
+                id="techDropdown"
+                data-bs-toggle="dropdown"
+              >
+                Technology
+              </button>
+              <ul class="dropdown-menu w-100">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="health"
+                    data-type="technology"
+                    >AI</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="educational"
+                    data-type="technology"
+                    >ML</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="information"
+                    data-type="technology"
+                    >Java full stack</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="energy"
+                    data-type="technology"
+                    >Mern full stack</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="dropdown filter-dropdown">
+              <button
+                class="btn btn-light dropdown-toggle w-100"
+                type="button"
+                id="countryDropdown"
+                data-bs-toggle="dropdown"
+              >
+                Countries
+              </button>
+              <ul class="dropdown-menu w-100">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="india"
+                    data-type="country"
+                    >India</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="usa"
+                    data-type="country"
+                    >USA</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-filter="uk"
+                    data-type="country"
+                    >UK</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-12 text-center mt-3">
+            <button id="resetFilters" class="btn btn-outline-secondary">
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tagline Section -->
+    <section class="tagline-section">
+      <div class="container">
+        <h2 class="mb-4">We Are Your Best Service Providers</h2>
+        <p class="lead">
+          We excel in delivering exceptional projects to our clients with
+          unmatched expertise and dedication
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="project-section">
+      <div class="container">
+        <div class="row" id="projectsContainer">
+          <!-- Project 1 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="medical"
+            data-technology="information"
+            data-country="usa"
+          >
+            <div class="project-card">
+              <img
+                src="https://indoreinstitute.com/wp-content/uploads/2020/07/smart-factory-concept-2020-724x432-1.jpg"
+                class="card-img-top"
+                alt="Smart Manufacturing"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">Smart Manufacturing</h5>
+                <p class="card-text">
+                  Advanced automation solutions for modern manufacturing
+                  facilities
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional project cards... -->
+          <!-- You can add more project cards following the same structure -->
+          <!-- Project 2 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="medical"
+            data-technology="health"
+            data-country="uk"
+          >
+            <div class="project-card">
+              <img
+                src="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_22572_16533781526443229.jpg"
+                class="card-img-top"
+                alt="Project 2"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">Healthcare Platform</h5>
+                <p class="card-text">
+                  Integrated healthcare management system for hospitals
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="media"
+            data-technology="educational"
+            data-country="india"
+          >
+            <div class="project-card">
+              <img
+                src="https://cdn.undiksha.ac.id/wp-content/uploads/sites/27/2023/03/06141543/elearning.jpg"
+                class="card-img-top"
+                alt="Project 3"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">E-Learning Solution</h5>
+                <p class="card-text">
+                  Comprehensive digital learning platform for schools
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="finance"
+            data-technology="information"
+            data-country="usa"
+          >
+            <div class="project-card">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/033/692/576/non_2x/abstract-glowing-forex-chart-interface-on-blurry-city-background-finance-and-trade-concept-double-exposure-financial-stock-market-graph-on-technology-abstract-background-ai-generated-free-photo.jpg"
+                class="card-img-top"
+                alt="Project 4"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">FinTech Platform</h5>
+                <p class="card-text">
+                  Digital banking and financial management solution
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="finance"
+            data-technology="information"
+            data-country="india"
+          >
+            <div class="project-card">
+              <img
+                src="./image/aadhar-integration.jpg"
+                class="card-img-top"
+                alt="Aadhaar Bank Mapping Project"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">Aadhaar Integration</h5>
+                <p class="card-text">
+                  Secure bank account linking system for UIDAI
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div
+            class="col-md-4 project-item"
+            data-industry="media"
+            data-technology="energy"
+            data-country="uk"
+          >
+            <div class="project-card">
+              <img
+                src="https://www.wirecable.in/wp-content/uploads/2023/05/smart-grid.jpg"
+                class="card-img-top"
+                alt="Project 6"
+              />
+              <div class="card-body p-4">
+                <h5 class="card-title">Smart Grid Solution</h5>
+                <p class="card-text">
+                  Intelligent energy management and distribution system
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Slider Section -->
+    <!-- Our Clients Title -->
+    <div class="client">
+      <h2 class="fw-bold">Our Clients</h2>
+    </div>
+
+    <section class="logos">
+      <div class="logos-slide">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+          alt="Amazon"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+          alt="Microsoft"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+          alt="Apple"
+        />
+        <img src="https://pngimg.com/d/meta_PNG5.png" alt="Meta" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+          alt="Netflix"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg"
+          alt="TCS"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg"
+          alt="Wipro"
+        />
+      </div>
+      <div class="logos-slide">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+          alt="Amazon"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+          alt="Microsoft"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+          alt="Apple"
+        />
+        <img src="https://pngimg.com/d/meta_PNG5.png" alt="Meta" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+          alt="Netflix"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg"
+          alt="TCS"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg"
+          alt="Wipro"
+        />
+      </div>
+      <div class="logos-slide">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+          alt="Amazon"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+          alt="Microsoft"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+          alt="Apple"
+        />
+        <img src="https://pngimg.com/d/meta_PNG5.png" alt="Meta" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+          alt="Netflix"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg"
+          alt="TCS"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg"
+          alt="Wipro"
+        />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-dark text-white pt-4">
+      <div class="container">
+        <div class="row">
+          <!-- Company Information -->
+          <div class="col-md-4">
+            <h5>Next Era Code</h5>
+            <p>
+              We specialize in website development for Indian and US-based
+              clients. Empowering businesses with cutting-edge solutions.
+            </p>
+          </div>
+
+          <!-- Social Media Links -->
+          <div class="col-md-4 text-center follow-us">
+            <h5>Follow Us</h5>
+            <a href="#" class="text-white me-3">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-white me-3">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-white me-3">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="col-md-4 text-end">
+            <h5>Contact Us</h5>
+            <p>
+              <i class="fa-solid fa-envelope"></i>&nbsp;
+              ContactUS@nexteracode.com
+            </p>
+            <p><i class="fa-solid fa-phone"></i>&nbsp; +91 1234567890</p>
+            <p><i class="fa-solid fa-location-dot"></i>&nbsp; PUNE</p>
+          </div>
+          <p class="text-center">
+            &copy; 2025 Next Era Code. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize filter state
+        let currentFilters = {
+          industry: null,
+          technology: null,
+          country: null,
+        };
+
+        // Get all dropdown items
+        const dropdownItems = document.querySelectorAll(".dropdown-item");
+
+        // Add click event listener to each dropdown item
+        dropdownItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Remove active class from all items in the same dropdown
+            const parentDropdown = this.closest(".dropdown-menu");
+            parentDropdown
+              .querySelectorAll(".dropdown-item")
+              .forEach((dropItem) => {
+                dropItem.classList.remove("active-filter");
+              });
+
+            // Add active class to clicked item
+            this.classList.add("active-filter");
+
+            // Update dropdown button text
+            const dropdownButton = parentDropdown.previousElementSibling;
+            dropdownButton.textContent = this.textContent;
+
+            // Update filters based on which dropdown was clicked
+            const filter = this.getAttribute("data-filter");
+            if (dropdownButton.id === "industryDropdown") {
+              currentFilters.industry = filter;
+            } else if (dropdownButton.id === "techDropdown") {
+              currentFilters.technology = filter;
+            } else if (dropdownButton.id === "countryDropdown") {
+              currentFilters.country = filter;
+            }
+
+            // Apply filters
+            filterProjects();
+          });
+        });
+
+        // Get existing reset button
+        const resetButton = document.getElementById("resetFilters");
+
+        resetButton.addEventListener("click", function () {
+          // Reset all filters
+          currentFilters = {
+            industry: null,
+            technology: null,
+            country: null,
+          };
+
+          // Reset dropdown buttons text
+          document.getElementById("industryDropdown").textContent = "Industry";
+          document.getElementById("techDropdown").textContent = "Technology";
+          document.getElementById("countryDropdown").textContent = "Countries";
+
+          // Remove active class from all filter items
+          document.querySelectorAll(".dropdown-item").forEach((item) => {
+            item.classList.remove("active-filter");
+          });
+
+          // Show all projects
+          filterProjects();
+        });
+
+        function filterProjects() {
+          const projects = document.querySelectorAll(".project-item");
+
+          projects.forEach((project) => {
+            const matchesIndustry =
+              !currentFilters.industry ||
+              project.dataset.industry === currentFilters.industry;
+            const matchesTechnology =
+              !currentFilters.technology ||
+              project.dataset.technology === currentFilters.technology;
+            const matchesCountry =
+              !currentFilters.country ||
+              project.dataset.country === currentFilters.country;
+
+            if (matchesIndustry && matchesTechnology && matchesCountry) {
+              project.style.display = "block";
+            } else {
+              project.style.display = "none";
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
